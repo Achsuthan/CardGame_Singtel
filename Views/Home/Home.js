@@ -56,8 +56,6 @@ export default function Home(props) {
         console.log(index)
         let tmp = CARD_PARIS_VALUE
         tmp[index].isShow = !tmp[index].isShow
-        // setCardParisValue([...tmp])
-
 
         let tmp_2 = tmp.filter((val, mapIndex) => {
             if (val.isShow && !val.isDone) {
@@ -95,7 +93,6 @@ export default function Home(props) {
 
         }
 
-        console.log("test2", tmp_2)
         if (tmp_2.length >= 2) {
             setTimeout(() => {
                 setCount(countTMp)
@@ -106,24 +103,11 @@ export default function Home(props) {
             setCount(countTMp)
             setCardParisValue([...tmp])
         }
-
-    }
-
-    const isPortrait = () => {
-        const dim = Dimensions.get('screen');
-        return dim.height >= dim.width;
-    };
-
-    const getNewDimensions = (event) => {
-        return {
-            screenWidth: Math.round(Dimensions.get('window').width),
-            screenHeight: Math.round(Dimensions.get('window').height)
-        }
     }
 
     return (
         <>
-            <View style={styles.topView} onLayout={(e) => getNewDimensions(e)}>
+            <View style={styles.topView}>
                 <TouchableOpacity onPress={e => initiate()}>
                     <View>
                         <Text style={styles.reSetButton}>Restart</Text>
