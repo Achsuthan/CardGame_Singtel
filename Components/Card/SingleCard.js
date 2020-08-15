@@ -88,14 +88,14 @@ const styles = StyleSheet.create({
     //Text back style
     textBack: {
         textAlign: "center",
-        fontSize: 50,
+        fontSize: 40,
         color: "#fff",
 
     },
     //Test front style
     textFront: {
         textAlign: "center",
-        fontSize: 50,
+        fontSize: 40,
         color: "#000",
 
     }
