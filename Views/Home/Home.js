@@ -26,7 +26,7 @@ export default function Home(props) {
         arr = [...arr, ...arr]
         arr = shuffle(arr)
 
-        arr = arr.map((val, index) => {
+        arr = arr.map((val) => {
             return {
                 number: val,
                 isShow: false,
@@ -64,7 +64,7 @@ export default function Home(props) {
                 return tTmp
             }
         })
-        console.log("test2", tmp_2)
+
         if (tmp_2.length >= 2) {
             if (tmp_2[0].number != tmp_2[1].number) {
                 tmp[tmp_2[0].index].isShow = false
@@ -80,7 +80,7 @@ export default function Home(props) {
         let valueTmep = tmp.filter((val, index) => {
             return !val.isDone ? val : ""
         })
-        console.log("valueTmep", valueTmep)
+        
         if (valueTmep.length == 0) {
             Alert.alert(
                 "congratulation",
