@@ -52,7 +52,7 @@ export default function Home(props) {
     const handleSingleCard = (index) => {
         let countTMp = count
         countTMp += 1
-        setCount(countTMp)
+
         console.log(index)
         let tmp = CARD_PARIS_VALUE
         tmp[index].isShow = !tmp[index].isShow
@@ -87,11 +87,19 @@ export default function Home(props) {
             console.log("done")
             alert("you completed")
         }
-        setTimeout(() => {
-            4
-            console.log("Hey singtel")
+
+        console.log("test2", tmp_2)
+        if (tmp_2.length >= 2) {
+            setTimeout(() => {
+                setCount(countTMp)
+                setCardParisValue(tmp)
+            }, 1000);
+        }
+        else {
+            setCount(countTMp)
             setCardParisValue([...tmp])
-        }, 3000);
+        }
+
     }
 
     return (
@@ -107,7 +115,7 @@ export default function Home(props) {
             {
 
                 ROW_ARRY.map((val, index) => (
-                    <SingleRow key={index} mainArray={CARD_PARIS_VALUE} lastIndex={val * NO_OF_COLUMN - 1} noOfColum={NO_OF_COLUMN} startIndex={val * NO_OF_COLUMN - 3} handleCardClickRow={e => handleSingleCard(e)}></SingleRow>
+                    <SingleRow key={index + new Date().getTime()} mainArray={CARD_PARIS_VALUE} lastIndex={val * NO_OF_COLUMN - 1} noOfColum={NO_OF_COLUMN} startIndex={val * NO_OF_COLUMN - 3} handleCardClickRow={e => handleSingleCard(e)}></SingleRow>
                 ))
             }
         </>
