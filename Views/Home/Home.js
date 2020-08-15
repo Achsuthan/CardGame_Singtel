@@ -125,20 +125,24 @@ export default function Home(props) {
     )
 }
 const styles = StyleSheet.create({
+    //Top view style for restart button and steps
     topView: {
         height: 50,
         flexDirection: "row",
         justifyContent: "space-between"
     },
+    //Rest button style
     reSetButton: {
         color: '#35a7ff',
         fontSize: 20,
         paddingLeft: 30
     },
+    //Counter text style
     counterText: {
         fontSize: 40,
         color: '#35a7ff',
     },
+    //steps text style
     steps: {
         color: '#fff',
         paddingRight: 20,

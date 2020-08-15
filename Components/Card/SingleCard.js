@@ -1,13 +1,17 @@
-import React, { Component, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Animated, } from 'react-native'
+import React, {useEffect, useState } from 'react';
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native'
 
 export default function Card({ number, isShow, handleCardClick, index, isDone }) {
+    //Local variable to handle the isShow
     const [localIsShow, setLocalIsShow] = useState(false)
+
+    //Willmount/ first time will trigger this and assging the props value to local state value
     useEffect(() => {
         setLocalIsShow(isShow)
     },
         [])
 
+    //Click handler function wich will handle if the card is already filiped with same value it wont trigger otherwise trigger the parent
     const selfHandler = () => {
         if (!isDone) {
             handleCardClick(index)
@@ -17,27 +21,27 @@ export default function Card({ number, isShow, handleCardClick, index, isDone })
 
     return (
         <TouchableOpacity onPress={e => selfHandler()} disabled={isDone}>
-            {localIsShow ? (<Animated.View style={styles.cardFront}>
+            {localIsShow ? (<View style={styles.cardFront}>
                 <View style={styles.cardContent}>
                     <Text style={styles.textFront}>{localIsShow ? number : '?'}</Text>
                 </View>
-            </Animated.View>) : (<Animated.View style={styles.cardBack}>
+            </View>) : (<View style={styles.cardBack}>
                 <View style={styles.cardContent}>
                     <Text style={styles.textBack}>{localIsShow ? number : '?'}</Text>
                 </View>
-            </Animated.View>)}
-
-
+            </View>)}
         </TouchableOpacity>
 
     )
 }
 
+//Screen widh and height
 let screenWidth = Math.round(Dimensions.get('window').width);
 let  screenHeight = Math.round(Dimensions.get('window').height);
 
 
 const styles = StyleSheet.create({
+    //Back card style
     cardBack: {
         flex: 1,
         flexDirection: 'column',
@@ -56,6 +60,7 @@ const styles = StyleSheet.create({
         borderWidth: 5,
         backgroundColor: '#35a7ff',
     },
+    //front card style
     cardFront: {
         flex: 1,
         flexDirection: 'column',
@@ -74,18 +79,20 @@ const styles = StyleSheet.create({
         borderWidth: 5,
         backgroundColor: '#fff',
     },
+    //card content style
     cardContent: {
         textAlign: "center",
         marginHorizontal: 18,
         marginVertical: 10,
     },
+    //Text back style
     textBack: {
         textAlign: "center",
         fontSize: 50,
         color: "#fff",
 
     },
-
+    //Test front style
     textFront: {
         textAlign: "center",
         fontSize: 50,

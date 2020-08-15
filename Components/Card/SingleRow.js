@@ -3,7 +3,6 @@ import { View, Text } from 'react-native'
 import Card from '../Card/SingleCard'
 
 export default function Home({ startIndex, lastIndex, mainArray, handleCardClickRow }) {
-    let tmp = [1, 2, 3]
     return (
         < View style={{ flex: 1, flexDirection: 'column' }}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
