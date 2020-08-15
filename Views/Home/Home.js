@@ -124,6 +124,7 @@ export default function Home(props) {
             {
 
                 ROW_ARRY.map((val, index) => (
+                    //This single row component
                     <SingleRow key={index + new Date().getTime()} mainArray={CARD_PARIS_VALUE} lastIndex={val * NO_OF_COLUMN - 1} noOfColum={NO_OF_COLUMN} startIndex={val * NO_OF_COLUMN - 3} handleCardClickRow={e => handleSingleCard(e)}></SingleRow>
                 ))
             }
