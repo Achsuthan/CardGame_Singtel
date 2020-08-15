@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import SingleRow from '../../Components/Card/SingleRow'
-import { View, StyleSheet, Text, TouchableOpacity, Dimensions, Alert } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
 
 export default function Home(props) {
+
+    //Use state to keep the click counts and array wich will used to play the game
     const [CARD_PARIS_VALUE, setCardParisValue] = useState([])
     const [count, setCount] = useState(0)
 
+    //Common variabel to keep the rows and coloums
     const ROW_ARRY = [1, 2, 3, 4]
     const NO_OF_COLUMN = 3
 
+    //Willmount/ First time will trigger when page load
     useEffect(() => {
         initiate()
     }, []);
 
-    useEffect(() => {
-
-    }, [])
-
+    //Init function which will create length of 12 array
     const initiate = () => {
         var arr = [];
         while (arr.length < 6) {
@@ -36,8 +37,7 @@ export default function Home(props) {
         setCount(0)
         setCardParisValue(arr)
     }
-
-
+    //Common function to suffel the array
     const shuffle = (a) => {
         var j, x, i;
         for (i = a.length - 1; i > 0; i--) {
@@ -49,14 +49,15 @@ export default function Home(props) {
         return a;
     }
 
+    //Handle the click event from child
     const handleSingleCard = (index) => {
         let countTMp = count
         countTMp += 1
 
-        console.log(index)
         let tmp = CARD_PARIS_VALUE
         tmp[index].isShow = !tmp[index].isShow
 
+        //Get the array which is clicked and not completed/not matched with the same number
         let tmp_2 = tmp.filter((val, mapIndex) => {
             if (val.isShow && !val.isDone) {
                 let tTmp = val
@@ -65,22 +66,25 @@ export default function Home(props) {
             }
         })
 
-        if (tmp_2.length >= 2) {
+        //This condition will work when the filtered array from above reached the length of 2
+        //Set the isShow and isDone variable based on the filtered array; when the first and second index of array's numbers are same then made the isShow and isDone as true otherwise both sould be false 
+        if (tmp_2.length == 2) {
             if (tmp_2[0].number != tmp_2[1].number) {
                 tmp[tmp_2[0].index].isShow = false
                 tmp[tmp_2[1].index].isShow = false
             }
             else {
-                console.log(tmp_2)
                 tmp[tmp_2[0].index].isDone = true
                 tmp[tmp_2[1].index].isDone = true
             }
         }
 
+        //Used to check user has completed the full game or not
         let valueTmep = tmp.filter((val, index) => {
             return !val.isDone ? val : ""
         })
         
+        //Show the alert message to user when all the card are flipped to front side
         if (valueTmep.length == 0) {
             Alert.alert(
                 "congratulation",
@@ -93,12 +97,14 @@ export default function Home(props) {
 
         }
 
+        //Set the timeout event with 1sec if the two card were pressed only
         if (tmp_2.length >= 2) {
             setTimeout(() => {
                 setCount(countTMp)
                 setCardParisValue(tmp)
             }, 1000);
         }
+        //If not then direclty update it to usestate variable
         else {
             setCount(countTMp)
             setCardParisValue([...tmp])
