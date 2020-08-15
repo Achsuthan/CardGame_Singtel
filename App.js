@@ -8,7 +8,7 @@
 
 import React from 'react';
 import Home from './Views/Home/Home'
-import {StyleSheet,Text, SafeAreaView} from 'react-native'
+import {StyleSheet, SafeAreaView} from 'react-native'
 
 const App: () => React$Node = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SingleRow from '../../Components/Card/SingleRow'
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Dimensions } from 'react-native';
 
 export default function Home(props) {
     const [CARD_PARIS_VALUE, setCardParisValue] = useState([])
@@ -102,9 +102,21 @@ export default function Home(props) {
 
     }
 
+    const isPortrait = () => {
+        const dim = Dimensions.get('screen');
+        return dim.height >= dim.width;
+      };
+
+    const getNewDimensions = (event) =>{
+        return {
+            screenWidth: Math.round(Dimensions.get('window').width),
+            screenHeight: Math.round(Dimensions.get('window').height)
+        }
+      }
+
     return (
         <>
-            <View style={styles.topView}>
+            <View style={styles.topView} onLayout={(e)=> getNewDimensions(e)}>
                 <TouchableOpacity onPress={e => initiate()}>
                     <View>
                         <Text style={styles.reSetButton}>Restart</Text>

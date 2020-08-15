@@ -3,45 +3,7 @@ import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Animated, } from 
 
 export default function Card({ number, isShow, handleCardClick, index, isDone }) {
     const [localIsShow, setLocalIsShow] = useState(false)
-    let animatedValue = new Animated.Value(0)
-    let value = 0
-    let frontInterpolate = animatedValue.interpolate({
-        inputRange: [0, 180],
-        outputRange: ['0deg', '180deg'],
-    })
-    let backInterpolate = animatedValue.interpolate({
-        inputRange: [0, 180],
-        outputRange: ['180deg', '360deg']
-    })
     useEffect(() => {
-        animatedValue = new Animated.Value(0);
-        value = 0;
-        animatedValue.addListener(({ value }) => {
-            value = value;
-        })
-        frontInterpolate = animatedValue.interpolate({
-            inputRange: [0, 180],
-            outputRange: ['0deg', '180deg'],
-        })
-        backInterpolate = animatedValue.interpolate({
-            inputRange: [0, 180],
-            outputRange: ['180deg', '360deg']
-        })
-
-        // if (isShow) {
-        //     Animated.spring(animatedValue, {
-        //         toValue: 0,
-        //         friction: 8,
-        //         tension: 10
-        //     }).start();
-        // } else {
-        //     Animated.spring(animatedValue, {
-        //         toValue: 180,
-        //         friction: 8,
-        //         tension: 10
-        //     }).start();
-        // }
-
         setLocalIsShow(isShow)
     },
         [])
@@ -53,26 +15,13 @@ export default function Card({ number, isShow, handleCardClick, index, isDone })
         }
     }
 
-    const frontAnimatedStyle = {
-        transform: [
-            { rotateY: frontInterpolate }
-        ]
-    }
-    const backAnimatedStyle = {
-        transform: [
-            { rotateY: backInterpolate }
-        ]
-    }
-
-
     return (
         <TouchableOpacity onPress={e => selfHandler()} disabled={isDone}>
-            {localIsShow ? (<Animated.View style={frontAnimatedStyle, styles.cardFront}>
+            {localIsShow ? (<Animated.View style={styles.cardFront}>
                 <View style={styles.cardContent}>
                     <Text style={styles.textFront}>{localIsShow ? number : '?'}</Text>
-                    <Text style={styles.textFront}>{number}</Text>
                 </View>
-            </Animated.View>) : (<Animated.View style={backAnimatedStyle, styles.cardBack}>
+            </Animated.View>) : (<Animated.View style={styles.cardBack}>
                 <View style={styles.cardContent}>
                     <Text style={styles.textBack}>{localIsShow ? number : '?'}</Text>
                 </View>
@@ -84,8 +33,8 @@ export default function Card({ number, isShow, handleCardClick, index, isDone })
     )
 }
 
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height);
+let screenWidth = Math.round(Dimensions.get('window').width);
+let  screenHeight = Math.round(Dimensions.get('window').height);
 
 
 const styles = StyleSheet.create({
