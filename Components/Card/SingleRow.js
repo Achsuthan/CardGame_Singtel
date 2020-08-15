@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import Card from '../Card/SingleCard'
 
 export default function Home({ startIndex, lastIndex, mainArray, handleCardClickRow }) {
