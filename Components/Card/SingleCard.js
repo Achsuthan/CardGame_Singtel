@@ -21,11 +21,11 @@ export default function Card({ number, isShow, handleCardClick, index, isDone })
 
     return (
         <TouchableOpacity onPress={e => selfHandler()} disabled={isDone}>
-            {localIsShow ? (<View style={styles.cardFront}>
+            {localIsShow ? (<View style={[styles.cardFront, styles.card]}>
                 <View style={styles.cardContent}>
                     <Text style={styles.textFront}>{localIsShow ? number : '?'}</Text>
                 </View>
-            </View>) : (<View style={styles.cardBack}>
+            </View>) : (<View style={[styles.cardBack , styles.card]}>
                 <View style={styles.cardContent}>
                     <Text style={styles.textBack}>{localIsShow ? number : '?'}</Text>
                 </View>
@@ -41,8 +41,7 @@ let  screenHeight = Math.round(Dimensions.get('window').height);
 
 
 const styles = StyleSheet.create({
-    //Back card style
-    cardBack: {
+    card:{
         flex: 1,
         flexDirection: 'column',
         justifyContent: "center",
@@ -58,25 +57,14 @@ const styles = StyleSheet.create({
         height: screenHeight / 4 - 90,
         borderColor: "#fff",
         borderWidth: 5,
+    },
+    //Back card style
+    cardBack: {
         backgroundColor: '#35a7ff',
     },
     //front card style
     cardFront: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: "center",
-        borderRadius: 6,
-        elevation: 3,
-        shadowOffset: { width: 1, height: 1 },
-        shadowColor: "#333",
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        marginHorizontal: 4,
-        marginVertical: 6,
-        width: screenWidth / 3 - 10,
-        height: screenHeight / 4 - 90,
-        borderColor: "#fff",
-        borderWidth: 5,
+        
         backgroundColor: '#fff',
     },
     //card content style
